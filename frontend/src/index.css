@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Noto+Color+Emoji&family=Oswald:wght@200..700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-ibm-sans: 'Google Sans', 'IBM Plex Sans', Arial, sans-serif;
+}
