@@ -19,12 +19,29 @@ dotenv.config();
 const app = express();
 const PORT = ENV_VARS.PORT || 3000;
 
+const allowedOrigins = (ENV_VARS.CLIENT_URL || "")
+  .split(",")
+  .map((origin) => origin.trim().replace(/\/+$/, ""))
+  .filter(Boolean);
+
 app.use(helmet());
 app.use(morgan("dev"));
 
 app.use(
   cors({
-    origin: ENV_VARS.CLIENT_URL,
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      const normalizedOrigin = origin.replace(/\/+$/, "");
+
+      if (allowedOrigins.includes(normalizedOrigin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   }),
 );
