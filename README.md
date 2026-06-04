@@ -1,4 +1,7 @@
-MINIMALIST RECIPE-SHARING-APP
+🚀 MINIMALIST RECIPE-SHARING-APP
+🌐 Live Deployment
+Frontend: https://recipe-sharing-app-one.vercel.app/
+Backend API: https://recipe-sharing-app-tit1.onrender.com/
 
 🚀 Development Process
 
@@ -99,7 +102,7 @@ https://developer.mozilla.org/
 3. Add inside backend folder .env
    PORT=3000
    MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_secret_key e.g AnythingIWant
+   JWT_SECRET=your_secret_key e.g AnythingYouWant
    NODE_ENV=development
    CLIENT_URL=http://localhost:5173
 
