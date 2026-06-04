@@ -45,17 +45,19 @@ if (ENV_VARS.NODE_ENV === "production") {
   });
 }
 
-const startServer = async () => {
-  try {
-    await connectDB();
+let dbConnected = false;
 
-    app.listen(PORT, () => {
-      console.log(` Backend Server running at http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("Database connection failed:", error);
-    process.exit(1);
-  }
+const startServer = async () => {
+  dbConnected = await connectDB();
+
+  app.get("/health", (req, res) => {
+    res.json({ ok: true, dbConnected });
+  });
+
+  app.listen(PORT, () => {
+    console.log(`Backend Server running at http://localhost:${PORT}`);
+    console.log(`DB connected: ${dbConnected}`);
+  });
 };
 
 startServer();
