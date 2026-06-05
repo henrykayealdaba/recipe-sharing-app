@@ -42,7 +42,10 @@ export const useAuthStore = create((set) => ({
       set({ user: res.data.user });
     } catch (error) {
       set({ user: null });
-      console.error(error);
+
+      if (error?.response?.status !== 401) {
+        console.error(error);
+      }
     }
   },
 }));

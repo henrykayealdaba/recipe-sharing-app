@@ -98,12 +98,20 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    const isProduction = process.env.NODE_ENV === "production";
+    const clientOrigins = (process.env.CLIENT_URL || "")
+      .split(",")
+      .map((origin) => origin.trim())
+      .filter(Boolean);
+
+    const useCrossSiteCookie = clientOrigins.some(
+      (origin) => !origin.includes("localhost"),
+    );
 
     res.clearCookie("jwt-recipe", {
       httpOnly: true,
-      sameSite: isProduction ? "none" : "lax",
-      secure: isProduction,
+      sameSite: useCrossSiteCookie ? "none" : "lax",
+      secure: useCrossSiteCookie,
+      path: "/",
     });
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
