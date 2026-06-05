@@ -9,26 +9,39 @@ import {
 import useSidebarStore from '../stores/useSidebarStore';
 import { Link } from 'react-router-dom';
 
-export default function Sidebar() {
+export default function Sidebar({ mobile = false, onClose }) {
   const { isCollapsed, toggleSidebar } = useSidebarStore();
 
   return (
     <aside
-      className={`h-screen bg-slate-200 text-white transition-all duration-75 ${
-        isCollapsed ? 'w-14' : 'w-64'
+      className={`transition-all duration-75 ${
+        mobile
+          ? 'fixed top-0 left-0 z-50 h-full w-64 bg-slate-200 text-black'
+          : `h-screen bg-slate-200 text-black ${isCollapsed ? 'w-14' : 'w-64'}`
       }`}
     >
-      <div className="flex justify-end p-2">
-        <button
-          onClick={toggleSidebar}
-          className="rounded bg-slate-100 px-2 py-1 hover:cursor-pointer hover:bg-slate-50 hover:shadow"
-        >
-          {isCollapsed ? (
-            <ArrowRight className="text-black" />
-          ) : (
-            <ArrowLeft className="text-black" />
-          )}
-        </button>
+      <div className="flex justify-between p-2">
+        {mobile ? (
+          <button
+            onClick={onClose}
+            className="rounded bg-slate-100 px-2 py-1 hover:cursor-pointer hover:bg-slate-50 hover:shadow"
+          >
+            Close
+          </button>
+        ) : (
+          <div className="flex w-full justify-end">
+            <button
+              onClick={toggleSidebar}
+              className="rounded bg-slate-100 px-2 py-1 hover:cursor-pointer hover:bg-slate-50 hover:shadow"
+            >
+              {isCollapsed ? (
+                <ArrowRight className="text-black" />
+              ) : (
+                <ArrowLeft className="text-black" />
+              )}
+            </button>
+          </div>
+        )}
       </div>
 
       <nav className="p-2">

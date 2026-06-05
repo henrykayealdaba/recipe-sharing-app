@@ -38,30 +38,32 @@ export default function RecipeDetail() {
   };
 
   if (loading) return <RecipeDetailSkeleton />;
-  if (!recipe) return <p className="p-6">Recipe not found</p>;
+  if (!recipe) return <p className="p-4">Recipe not found</p>;
 
   const isOwner = user?._id === recipe.user?._id;
 
   return (
-    <div className="max-w-3xl p-6">
-      <h1 className="text-3xl font-bold">{recipe.title}</h1>
+    <div className="mx-4 max-w-3xl p-4 sm:mx-auto sm:p-6">
+      <h1 className="text-2xl font-bold sm:text-3xl">{recipe.title}</h1>
 
-      <p className="mt-2 text-gray-500">
+      <p className="mt-2 text-sm text-gray-500 sm:text-base">
         Updated: {new Date(recipe.updatedAt).toLocaleDateString()}
       </p>
 
-      <h2 className="mt-6 text-xl font-semibold">Ingredients</h2>
-      <ul className="mt-2 list-disc pl-5">
+      <h2 className="mt-6 text-lg font-semibold sm:text-xl">Ingredients</h2>
+      <ul className="mt-2 list-disc pl-5 text-sm sm:text-base">
         {recipe.ingredients.map((i, idx) => (
           <li key={idx}>{i}</li>
         ))}
       </ul>
 
-      <h2 className="mt-6 text-xl font-semibold">Instructions</h2>
-      <p className="mt-2 whitespace-pre-line">{recipe.instructions}</p>
+      <h2 className="mt-6 text-lg font-semibold sm:text-xl">Instructions</h2>
+      <p className="mt-2 text-sm whitespace-pre-line sm:text-base">
+        {recipe.instructions}
+      </p>
 
       {isOwner && (
-        <div className="mt-8 flex gap-3">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <button
             onClick={handleDelete}
             className="rounded bg-red-500 px-4 py-2 text-white"

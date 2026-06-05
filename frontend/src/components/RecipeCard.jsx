@@ -9,7 +9,7 @@ export default function RecipeCard({ recipe, onClick, onToggleFavorite }) {
   return (
     <li
       onClick={onClick}
-      className="relative flex cursor-pointer flex-col rounded-lg border p-3 shadow-sm transition hover:bg-gray-50"
+      className="relative flex h-full cursor-pointer flex-col justify-between rounded-lg border p-4 shadow-sm transition hover:bg-gray-50"
     >
       <button
         onClick={(e) => {
@@ -26,9 +26,9 @@ export default function RecipeCard({ recipe, onClick, onToggleFavorite }) {
         />
       </button>
 
-      <h2 className="text-lg font-bold">{recipe.title}</h2>
+      <h2 className="text-base font-bold md:text-lg">{recipe.title}</h2>
 
-      <ul className="mt-2 ml-4 flex flex-wrap gap-x-4 gap-y-1 text-gray-700">
+      <ul className="mt-2 ml-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-700 md:text-base">
         {recipe.ingredients?.map((i, idx) => (
           <li key={idx} className="list-disc">
             {i}

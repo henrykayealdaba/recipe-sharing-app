@@ -33,18 +33,18 @@ export default function MyDish() {
   };
 
   return (
-    <div className="max-w-2xl p-6">
+    <div className="mx-auto w-full max-w-7xl p-6">
       <h1 className="mb-4 text-2xl font-bold">My Dish</h1>
 
       {loading && recipes.length === 0 ? (
-        <div className="space-y-3">
-          {Array.from({ length: 4 }).map((_, index) => (
+        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, index) => (
             <RecipeCardSkeleton key={index} />
           ))}
         </div>
       ) : null}
 
-      <ul className="space-y-2">
+      <ul className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
           <RecipeCard
             key={recipe._id}
@@ -55,11 +55,13 @@ export default function MyDish() {
         ))}
       </ul>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-      />
+      <div className="mt-4">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
     </div>
   );
 }
