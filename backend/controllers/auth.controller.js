@@ -1,6 +1,7 @@
 import { User } from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { generateTokenAndSetCookie } from "../utils/generateToken.js";
+import { getAuthCookieOptions } from "../utils/cookieOptions.js";
 
 export const signup = async (req, res) => {
   try {
@@ -98,20 +99,8 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    const clientOrigins = (process.env.CLIENT_URL || "")
-      .split(",")
-      .map((origin) => origin.trim())
-      .filter(Boolean);
-
-    const useCrossSiteCookie = clientOrigins.some(
-      (origin) => !origin.includes("localhost"),
-    );
-
     res.clearCookie("jwt-recipe", {
-      httpOnly: true,
-      sameSite: useCrossSiteCookie ? "none" : "lax",
-      secure: useCrossSiteCookie,
-      path: "/",
+      ...getAuthCookieOptions(),
     });
     res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
