@@ -1,7 +1,8 @@
-🚀 MINIMALIST RECIPE-SHARING-APP
+RECIPE SHARING APP - HENRY KAYE
 🌐 Live Deployment
-Frontend: https://recipe-sharing-app-one.vercel.app/
-Backend API: https://recipe-sharing-app-tit1.onrender.com/
+
+- Frontend: https://recipe-sharing-app-one.vercel.app/
+- Backend API: https://recipe-sharing-app-tit1.onrender.com/
 
 🚀 Development Process
 
@@ -77,18 +78,18 @@ ChatGPT – Used for debugging, architecture guidance, and feature implementatio
 
 📚 External Resources
 
-MongoDB Documentation
-https://www.mongodb.com/docs/
-Express.js Documentation
-https://expressjs.com/
-React Router Docs
-https://reactrouter.com/
-TailwindCSS Docs
-https://tailwindcss.com/docs
-JWT Authentication Guide
-https://jwt.io/introduction
-MDN Web Docs (general JavaScript reference)
-https://developer.mozilla.org/
+- MongoDB Documentation
+  https://www.mongodb.com/docs/
+- Express.js Documentation
+  https://expressjs.com/
+- React Router Docs
+  https://reactrouter.com/
+- TailwindCSS Docs
+  https://tailwindcss.com/docs
+- JWT Authentication Guide
+  https://jwt.io/introduction
+- MDN Web Docs (general JavaScript reference)
+  https://developer.mozilla.org/
 
 ⚙️ Setup Instructions
 
@@ -99,17 +100,20 @@ https://developer.mozilla.org/
 2. Install dependencies
    npm install
 
-3. Add inside backend folder .env
-   PORT=3000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_secret_key e.g AnythingYouWant
-   NODE_ENV=development
-   CLIENT_URL=http://localhost:5173
+3. - Add inside backend folder .env
+   - PORT=3000
+   - MONGO_URI=your_mongodb_connection_string (Needs new database)
+   - JWT_SECRET=your_secret_key e.g AnythingYouWant
+   - NODE_ENV=development
+   - CLIENT_URL=http://localhost:5173
 
-4. Run the project (development) from the root folder.
+4. - Add inside frontend folder .env
+   - VITE_API_BASE_URL=http://localhost:3000/api
+
+5. Run the project (development) from the root folder.
    npm run dev
 
-5. Build for production
+6. Build for production
    npm run build
 
 🎯 Features Summary
