@@ -33,7 +33,9 @@ export const getMyRecipes = async (req, res) => {
   try {
     const userId = req.user._id;
 
-    const recipes = await Recipe.find({ user: userId }).sort({ updatedAt: -1 });
+    const recipes = await Recipe.find({ user: userId })
+      .populate("user", "username email")
+      .sort({ updatedAt: -1 });
 
     res.status(200).json({ success: true, recipes });
   } catch (error) {

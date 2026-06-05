@@ -7,7 +7,7 @@ export const getFavorites = async (req, res) => {
 
     const recipes = await Recipe.find({
       _id: { $in: user.favorites },
-    });
+    }).populate("user", "username email");
 
     res.status(200).json({
       success: true,
