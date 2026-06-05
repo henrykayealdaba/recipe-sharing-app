@@ -24,21 +24,25 @@ const allowedOrigins = (ENV_VARS.CLIENT_URL || "")
   .map((origin) => origin.trim().replace(/\/+$/, ""))
   .filter(Boolean);
 
+const allowDevFallback =
+  !allowedOrigins.length && ENV_VARS.NODE_ENV !== "production";
+
 app.use(helmet());
 app.use(morgan("dev"));
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin) {
-        return callback(null, true);
-      }
+      if (!origin) return callback(null, true);
 
       const normalizedOrigin = origin.replace(/\/+$/, "");
 
-      if (allowedOrigins.includes(normalizedOrigin)) {
-        return callback(null, true);
+      if (allowDevFallback) {
+        if (normalizedOrigin.includes("localhost")) return callback(null, true);
       }
+
+      if (allowedOrigins.includes(normalizedOrigin))
+        return callback(null, true);
 
       return callback(new Error("Not allowed by CORS"));
     },
